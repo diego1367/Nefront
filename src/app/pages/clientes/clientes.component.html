@@ -1,0 +1,43 @@
+<h2 class="content-block">Libros</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-form id="form" [colCount]="6" [formData]="entidad" labelLocation="left">
+      <dxi-item dataField="idLibro" editorType="dxTextBox" [colSpan]="2">
+        <dxo-label text="Id libro "></dxo-label>
+        <dxi-validation-rule type="required" message="Debe Ingresar un Id Libro" [reevaluate]="true">
+        </dxi-validation-rule>
+      </dxi-item>
+      <dxi-item itemType="button" horizontalAlignment="center" [colSpan]="1"
+        [buttonOptions]="{text:'Buscar', type: 'default', icon: 'search', onClick: btnAgregar_Click}">
+      </dxi-item>
+      <dxi-item itemType="button" horizontalAlignment="center" [colSpan]="1"
+      [buttonOptions]="{text:'Limpiar', type: 'default', icon: 'trash', onClick: btnlimpiar}">
+    </dxi-item>
+    </dx-form>
+  </div>
+</div>
+<h2 class="content-block">Lista Libros </h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+    <dx-data-grid #dataGridListado [dataSource]="dataSource" [focusedRowEnabled]="true" keyExpr="idLibro"
+      [showColumnLines]="true" [showRowLines]="true">
+      <dxi-column caption="Codigo" dataField="idLibro" sortOrder="asc" [width]="100">
+      </dxi-column>
+      <dxi-column caption="Titulo" dataField="titulo" ></dxi-column>
+      <dxi-column caption="Año" dataField="ano" dataType="date"  format="year" ></dxi-column>
+      <dxi-column caption="Genero" dataField="genero" ></dxi-column>
+      <dxi-column caption="Num Paginas" dataField="numPaginas"  [width]="200"></dxi-column>
+      <dxi-column caption="Editorial" dataField="idEditorial" >
+        <dxo-lookup [dataSource]="dataSourceEdito" displayExpr="nombre" valueExpr="idEditorial">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column caption="Autor" dataField="idAutor" >
+        <dxo-lookup [dataSource]="dataSourceAuto" displayExpr="nombre" valueExpr="idAutor">
+        </dxo-lookup>
+      </dxi-column>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-pager [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true">
+      </dxo-pager>
+    </dx-data-grid>
+  </div>
+</div>
